@@ -30,3 +30,12 @@ Route::get('/portfolio', function()
 {
 	return 'This is my portfolio.';
 });
+
+Route::get('/dice-roll/{guess}', function($guess) 
+{
+	$data = [
+		'face_number' => rand(1, 6),
+		'guess' => $guess
+	];
+	return View::make('dice-roll')->with($data);
+});
