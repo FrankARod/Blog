@@ -21,15 +21,9 @@ Route::get('/hello/{name}/{day}', function($name, $day)
 	return "Hello $name! Today is $day.";
 });
 
-Route::get('/resume', function() 
-{
-	return View::make('resume');
-});
+Route::get('/resume', 'HomeController@showResume');
 
-Route::get('/portfolio', function() 
-{
-	return View::make('portfolio');
-});
+Route::get('/portfolio', 'HomeController@showPortfolio');
 
 Route::get('/dice-roll/{guess}', function($guess) 
 {
