@@ -20,7 +20,7 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return 'This should create a post';
+		return View::make('posts.create');
 	}
 
 
@@ -31,7 +31,15 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		return 'This should store a new post';
+		if (Input::has('title') && Input::has('content')) {
+			$post = new Post();
+			$post->title = Input::get('title');
+			$post->content = Input::get('content');
+			$post->save();
+			return 'Post successful';
+		} else {
+			return Redirect::action('PostsController@create')->withInput();
+		}
 	}
 
 
