@@ -11,6 +11,21 @@
 |
 */
 
+Route::get('/dice-roll/{guess}', function($guess) 
+{
+	$data = [
+		'face_number' => rand(1, 6),
+		'guess' => $guess
+	];
+	return View::make('dice-roll')->with($data);
+});
+
+Route::get('orm-test', function ()
+{
+	$post = Post::findOrFail(2);
+	$post->delete();
+});
+
 Route::get('/', function()
 {
 	return View::make('hello');
@@ -25,11 +40,4 @@ Route::get('/resume', 'HomeController@showResume');
 
 Route::get('/portfolio', 'HomeController@showPortfolio');
 
-Route::get('/dice-roll/{guess}', function($guess) 
-{
-	$data = [
-		'face_number' => rand(1, 6),
-		'guess' => $guess
-	];
-	return View::make('dice-roll')->with($data);
-});
+Route::resource('posts', 'PostsController');
