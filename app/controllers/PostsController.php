@@ -55,7 +55,10 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::findOrFail($id);
+		$post = Post::find($id);
+		if (!$post) {
+			App::abort(404);
+		}
 		return View::make('posts.show')->with('post', $post);
 	}
 
@@ -85,7 +88,8 @@ class PostsController extends BaseController {
 
 		if ($id)
 		{
-			$post = Post::findOrFail($id);
+			$post = Post::find($id);
+			
 		}
 
 		$validator = Validator::make(Input::all(), Post::$rules);
