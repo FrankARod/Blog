@@ -1,6 +1,6 @@
 <?php
 
-class PostsController extends \BaseController {
+class PostsController extends BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,8 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 'This should show a list of all posts';
+		$posts = Post::paginate(4);
+		return View::make('posts.index')->with('posts', $posts);
 	}
 
 
@@ -31,15 +32,18 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-		if (Input::has('title') && Input::has('content')) {
-			$post = new Post();
-			$post->title = Input::get('title');
-			$post->content = Input::get('content');
-			$post->save();
-			return 'Post successful';
-		} else {
-			return Redirect::action('PostsController@create')->withInput();
-		}
+		// $validator = Validator::make(Input::all(), Post::$rules);
+		// if ($validator->fails()) {
+		// 	return Redirect::action('PostsController@create')->withInput()->withErrors($validator);
+		// } else {
+		// 	$post = new Post();
+		// 	$post->title = Input::get('title');
+		// 	$post->content = Input::get('content');
+		// 	$post->save();
+		// 	return Redirect::action('PostsController@index');
+		// }
+
+		return $this->update(null);
 	}
 
 
@@ -51,7 +55,8 @@ class PostsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return 'This should show a specific post';
+		$post = Post::findOrFail($id);
+		return View::make('posts.show')->with('post', $post);
 	}
 
 
@@ -63,7 +68,8 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return 'This should show a form for editing a specific post';
+		$post = Post::findOrFail($id);
+		return View::make('posts.edit')->with('post', $post);
 	}
 
 
@@ -75,8 +81,31 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		return 'This should update a specific post';
+		$post = new Post();
+
+		if ($id)
+		{
+			$post = Post::findOrFail($id);
+		}
+
+		$validator = Validator::make(Input::all(), Post::$rules);
+		if ($validator->fails()) {
+			Session::flash('errorMessage', 'Post Unsuccessful');
+			Log::info("Title: " . Input::get('title') . ", Content: " . Input::get('content'));
+			if ($id) {
+				return Redirect::action('PostsController@edit', $id)->withErrors($validator);
+			}
+			return Redirect::action('PostsController@create')->withInput()->withErrors($validator);
+		} else {
+			$post->title = Input::get('title');
+			$post->content = Input::get('content');
+			$post->save();
+			Session::flash('successMessage', 'Post Successful!');
+			return Redirect::action('PostsController@index');
+		}
 	}
+
+	// Move redundant code from update and store
 
 
 	/**
