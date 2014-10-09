@@ -14,4 +14,4 @@
 	{{ $errors->first('content', '<div><p class=" alert alert-danger pull-left">:message</p></div>') }}
 </div>
 
-{{ Form::submit('Post') }}
+{{ Form::submit('Post', array('class' => 'btn btn-primary')) }}
