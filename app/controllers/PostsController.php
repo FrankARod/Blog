@@ -120,7 +120,14 @@ class PostsController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-		return 'This should delete a specific post';
+		$post = Post::find($id);
+		if (!$post) {
+			App::abort(404);
+		}
+		$post->delete();
+		Log::info("Deleted post $id");
+		Session::flash('successMessage', 'Post deleted successfully');
+		return Redirect::action('PostsController@index');
 	}
 
 
