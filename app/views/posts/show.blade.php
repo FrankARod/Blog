@@ -16,5 +16,5 @@
 	{{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}
 		<button type="submit" class="btn btn-sm btn-danger">Delete</button>
 	{{ Form::close() }}
-
+	<script type="text/javascript" src="js/delete_confirm.js"></script>
 @stop
