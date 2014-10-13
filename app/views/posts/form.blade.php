@@ -8,9 +8,7 @@
 
 <div class="form-group">
 	{{ Form::label('content', 'Content') }}
-	
 	{{ Form::textarea('content', null, array('class' => 'form-control', 'placeholder' => 'Content of Blog Post', 'value' =>Input::old('title'))) }}
-	
 	{{ $errors->first('content', '<div><p class=" alert alert-danger pull-left">:message</p></div>') }}
 </div>
 

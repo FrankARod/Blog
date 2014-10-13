@@ -9,4 +9,9 @@ class Post extends BaseModel {
 		'title' => 'required|max:255',
 		'content' => 'required'
 	];	
+
+	public function user() 
+	{
+        return $this->belongsTo('User');
+	}
 }

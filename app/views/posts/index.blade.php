@@ -8,12 +8,19 @@
 	@foreach ($posts as $post)
 		<div class="row">
 			<div class="col-md-4">
-				<h2>{{{ $post->title }}}</h2>
-				
-				<article>{{{ $post->content }}}</article>
+				<article>
+					<h2>{{{ $post->title }}}</h2>
 
-				<p>{{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</p>
+					<aside>Written by {{ $post->user->first_name }} {{ $post->user->last_name }}</aside>
+					
+					<time>{{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
+					
+					<p>{{{ $post->content }}}</p>
+				</article>
 				
+
+				
+
 				<a class="btn btn-primary btn-sm" href="{{{ action('PostsController@show', $post->id) }}}">Read More</a>
 			</div>
 		</div>

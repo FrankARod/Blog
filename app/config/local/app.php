@@ -14,5 +14,7 @@ return array(
 	*/
 
 	'debug' => true,
-
+	'provider' => append_config(array(
+		'Way\Generators\GeneratorsServiceProvider'
+		))
 );

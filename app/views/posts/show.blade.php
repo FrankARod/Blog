@@ -4,13 +4,14 @@
 	<article>
 		<header class="page-header">
 			<h1>{{{ $post->title }}}</h1>
+			<aside>Written by {{ $post->user->first_name }} {{ $post->user->last_name }}</aside>
 		</header>
 
-		{{{ $post->content }}}
+		<p>{{{ $post->content }}}</p>
 
+		<time>Written {{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
 	</article>
 	
-	<p>Written {{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</p>
 	
 	<a class="btn btn-sm" href="{{{ action('PostsController@edit', $post->id) }}}">Edit</a>
 	{{ Form::open(['method' => 'DELETE', 'action' => ['PostsController@destroy', $post->id]]) }}

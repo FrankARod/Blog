@@ -38,6 +38,9 @@
 		@endif
 
 		@yield('content')
+
+		<hr>
+		<footer>FrankTech 2014</footer>
 	</div>	
 </body>
 </html>

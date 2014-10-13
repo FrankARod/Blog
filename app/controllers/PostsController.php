@@ -18,7 +18,7 @@ class PostsController extends BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::paginate(4);
+		$posts = Post::with('user')->orderBy('created_at', 'DESC')->paginate(4);
 		return View::make('posts.index')->with('posts', $posts);
 	}
 
@@ -41,17 +41,6 @@ class PostsController extends BaseController {
 	 */
 	public function store()
 	{
-		// $validator = Validator::make(Input::all(), Post::$rules);
-		// if ($validator->fails()) {
-		// 	return Redirect::action('PostsController@create')->withInput()->withErrors($validator);
-		// } else {
-		// 	$post = new Post();
-		// 	$post->title = Input::get('title');
-		// 	$post->content = Input::get('content');
-		// 	$post->save();
-		// 	return Redirect::action('PostsController@index');
-		// }
-
 		return $this->update(null);
 	}
 
@@ -64,7 +53,7 @@ class PostsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$post = Post::find($id);
+		$post = Post::with('user')->find($id);
 		if (!$post) {
 			App::abort(404);
 		}
@@ -112,14 +101,12 @@ class PostsController extends BaseController {
 		} else {
 			$post->title = Input::get('title');
 			$post->content = Input::get('content');
+			$post->user_id = Auth::id();
 			$post->save();
 			Session::flash('successMessage', 'Post Successful!');
 			return Redirect::action('PostsController@index');
 		}
 	}
-
-	// Move redundant code from update and store
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -138,6 +125,4 @@ class PostsController extends BaseController {
 		Session::flash('successMessage', 'Post deleted successfully');
 		return Redirect::action('PostsController@index');
 	}
-
-
 }
