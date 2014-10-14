@@ -41,3 +41,11 @@ Route::get('/resume', 'HomeController@showResume');
 Route::get('/portfolio', 'HomeController@showPortfolio');
 
 Route::resource('posts', 'PostsController');
+
+Route::get('/login', 'HomeController@showLogin');
+
+Route::get('/logout', 'HomeController@doLogout');
+
+Route::post('/login', 'HomeController@doLogin');
+
+

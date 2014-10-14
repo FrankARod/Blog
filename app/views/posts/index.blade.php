@@ -3,6 +3,9 @@
 @section('content')
 	<div class="page-header">
 		<h1>Frank's Blug</h1>
+		@if(Input::has('search'))
+			<h2>Searching for "{{{ Input::get('search') }}}"</h2>
+		@endif
 	</div>
 		
 	@foreach ($posts as $post)
@@ -15,18 +18,16 @@
 					
 					<time>{{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
 					
-					<p>{{{ $post->content }}}</p>
+					<p>{{{ substr($post->content, 0, 250) . "..." }}}</p>
 				</article>
 				
-
-				
-
 				<a class="btn btn-primary btn-sm" href="{{{ action('PostsController@show', $post->id) }}}">Read More</a>
 			</div>
 		</div>
 	@endforeach
 	
 	<div class="container">
-		{{ $posts->links() }}
+
+		{{ $posts->appends(array('search' => Input::get('search')))->links() }}
 	</div>
 @stop
