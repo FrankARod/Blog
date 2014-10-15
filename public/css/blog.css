@@ -17,3 +17,12 @@
 	cursor: inherit;
 	display: block;
 }
+#form-button {
+	display: inline;
+}
+#blog-image {
+	margin-right: 15px;
+}
+.blog_post {
+	margin-bottom: 15px;
+}

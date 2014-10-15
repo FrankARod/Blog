@@ -12,7 +12,7 @@
 	</div>
 	<div class="container">	
 		@foreach ($posts as $post)
-				<div class="col-md-6">
+				<div class="col-md-6 blog_post">
 					<article>
 						@if($post->image)
 							<div>
@@ -25,6 +25,8 @@
 						
 						<time>{{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
 						
+						<hr>
+
 						<p>{{{ substr($post->content, 0, 250) . "..." }}}</p>
 					</article>
 					

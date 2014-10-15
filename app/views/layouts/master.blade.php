@@ -1,6 +1,12 @@
 <html>
 <head>
 	<title>@yield('title')</title>
+
+	<meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- jQuery -->
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
@@ -12,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="/css/create.css">
+	<link rel="stylesheet" type="text/css" href="/css/blog.css">
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -22,19 +28,23 @@
 			</div> 
 			
 			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav navbar-left">
 					<li><a href="{{ action('HomeController@showResume') }}">Resume</a></li>
 					<li><a href="{{ action('HomeController@showPortfolio') }}">Portfolio</a></li>
 				</ul>			
 			
-				{{ Form::open(['method' => 'GET', 'action' => 'PostsController@index', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
-					{{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Search Blog']) }}
+				{{ Form::open(['method' => 'GET', 'action' => 'PostsController@index', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}	
+					<!-- <div class="form-group"> -->
+						{{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Search Blog']) }}
+					<!-- </div> -->
 					
-					<div class="form-group">	
-						<span class="input-group-btn">
-							<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+					<div class="form-group">
+						<span id="form-button" class="input-group-btn">
+							<button type="submit" class="btn btn-default">
+								<i class="fa fa-search"></i>
+							</button>
 						</span>
-					</div>
+					</div>	
 				{{ Form::close() }}
 				
 				<ul class="nav navbar-nav navbar-right">

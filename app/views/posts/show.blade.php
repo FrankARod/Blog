@@ -7,15 +7,15 @@
 		<header class="page-header">
 			<h1>{{{ $post->title }}}</h1>
 			<aside>Written by {{ $post->user->first_name }} {{ $post->user->last_name }}</aside>
+			<time>Written {{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
 		</header>
 
 		@if($post->image)
-			<img src="{{{ $post->image }}}">
+			<img id="blog-image" class="pull-left" src="{{{ $post->image }}}">
 		@endif
 
 		<p>{{{ $post->content }}}</p>
 
-		<time>Written {{{ $post->created_at->setTimezone('America/Chicago')->format(Post::FORMAT) }}}</time>
 	</article>
 	
 	
