@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title></title>
+	<title>@yield('title')</title>
 	
 	<!-- jQuery -->
 	<script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
@@ -11,6 +11,8 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="/css/create.css">
 </head>
 <body>
 	<nav class="navbar navbar-default" role="navigation">
@@ -23,17 +25,17 @@
 				<ul class="nav navbar-nav">
 					<li><a href="{{ action('HomeController@showResume') }}">Resume</a></li>
 					<li><a href="{{ action('HomeController@showPortfolio') }}">Portfolio</a></li>
-				</ul>
-
-			<form class="navbar-form navbar-left" role="search" action="{{ action('PostsController@index') }}">
-				<input type="text" id="search" name="search" class="form-control" placeholder="Search Blog">
-				
-				<div class="form-group">	
-					<span class="input-group-btn">
-						<button class="btn btn-default"><i class="fa fa-search"></i></button>
-					</span>
-				</div>
-			</form>
+				</ul>			
+			
+				{{ Form::open(['method' => 'GET', 'action' => 'PostsController@index', 'class' => 'navbar-form navbar-left', 'role' => 'search']) }}
+					{{ Form::text('search', null, ['class' => 'form-control', 'placeholder' => 'Search Blog']) }}
+					
+					<div class="form-group">	
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+						</span>
+					</div>
+				{{ Form::close() }}
 				
 				<ul class="nav navbar-nav navbar-right">
 					@if(Auth::check())

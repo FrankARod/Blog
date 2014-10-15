@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Dice Roll')
+
 @section('content')
 	@if ($guess == $face_number)
 			{{{ "$guess was correct!" }}}

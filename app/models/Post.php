@@ -7,7 +7,8 @@ class Post extends BaseModel {
 
 	public static $rules = [
 		'title' => 'required|max:255',
-		'content' => 'required'
+		'content' => 'required',
+		'image' => 'image'
 	];	
 
 	public function user() 

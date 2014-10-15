@@ -48,4 +48,8 @@ Route::get('/logout', 'HomeController@doLogout');
 
 Route::post('/login', 'HomeController@doLogin');
 
+Route::get('/spook', function()
+{
+	return View::make('spooky');
+});
 

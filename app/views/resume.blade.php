@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Resume')
+
 @section('content')
 	<div class="jumbotron">	
 		<h1>Frank Rodriguez <small>LAMP Stack Developer</small></h1>

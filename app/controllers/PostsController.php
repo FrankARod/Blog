@@ -23,6 +23,12 @@ class PostsController extends BaseController {
 			$query = Post::with('user');
 			$query->where('title', 'like', "%$search%");
 			$query->orWhere('content', 'like', "%$search%");
+			$query->orWhereHas('user', function($q) 
+			{
+				$search = Input::get('search');
+				$q->where('first_name', 'like', "%$search%");
+				$q->orWhere('last_name', 'lile', "%$search%");
+			});
 			$posts = $query->orderBy('created_at', 'DESC')->paginate(4);
 		} else {
 			$posts = Post::with('user')->orderBy('created_at', 'DESC')->paginate(4);
@@ -111,6 +117,16 @@ class PostsController extends BaseController {
 			$post->title = Input::get('title');
 			$post->content = Input::get('content');
 			$post->user_id = Auth::id();
+			if (Input::hasFile('image') && Input::file('image')->isValid()) {
+				$file = Input::file('image');
+				$local_path = '/img/upload/';
+				$destinationPath = public_path() . $local_path;
+				$filename = str_random(8) . "_" . $file->getClientOriginalName();
+				$file->move($destinationPath, $filename);
+				$post->image = $local_path . $filename;
+			} else {
+				$post->image = null;
+			}
 			$post->save();
 			Session::flash('successMessage', 'Post Successful!');
 			return Redirect::action('PostsController@index');
