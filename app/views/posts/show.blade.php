@@ -11,7 +11,7 @@
 		</header>
 
 		@if($post->image)
-			<img id="blog-image" class="pull-left" src="{{{ $post->image }}}">
+			<img id="blog-image" class="pull-left img-responsive" src="{{{ $post->image }}}">
 		@endif
 
 		<p>{{{ $post->content }}}</p>

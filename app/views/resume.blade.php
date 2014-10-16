@@ -35,15 +35,15 @@
 
 			<dl>
 				<div class="row">
-					<dt class="col-md-4">LAMP+J Software Development Bootcamp</dt>
+					<dt class="col-md-6">LAMP+J Software Development Bootcamp</dt>
 
-					<dd class="col-md-4">Codeup, August 2014-November 2014</dd>
+					<dd class="col-md-6 pull-right">Codeup, August 2014-November 2014</dd>
 				</div>
 				
-				<div id="hich_school"class="row">
-					<dt class="col-md-4">High School</dt>
+				<div id="hich_school" class="row">
+					<dt class="col-md-6">High School</dt>
 				
-					<dd class="col-md-4">Brooks Academy of Science and Engineering, 2010-2014</dd>
+					<dd class="col-md-6 pull-right">Brooks Academy of Science and Engineering, 2010-2014</dd>
 				</div>
 			</dl>
 		</div>
@@ -56,9 +56,11 @@
 			<h2>Work Experience</h2>
 
 			<dl>
-				<dt class="col-md-4">Intern</dt>
+				<div class="row">
+					<dt class="col-md-6">Intern</dt>
 
-				<dd class="col-md-4">Codeup, January 2014-May 2014</dd>
+					<dd class="col-md-6 pull-right">Codeup, January 2014-May 2014</dd>
+				</div>
 			</dl>
 		</div>
 	</div>
@@ -70,9 +72,11 @@
 			<h2>Honors</h2>
 			
 			<dl>
-				<dt class="col-md-4">National Hispanic Scholar</dt>
+				<div class="row">		
+					<dt class="col-md-6">National Hispanic Scholar</dt>
 
-				<dd class="col-md-4">Honorable Mention</dd>
+					<dd class="col-md-6 pull-right">Honorable Mention</dd>
+				</div>
 			</dl>
 		</div>
 	</div>
